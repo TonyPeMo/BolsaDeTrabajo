@@ -1,9 +1,10 @@
 package com.example.repository;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import com.example.bean.Empresa;
+import java.util.Iterator;
+import com.exemple.bean.Empresa;
+
 
 public class BaseDatos {
 	
@@ -14,8 +15,8 @@ public class BaseDatos {
 		empresas.add(new Empresa(3, "Empresa 3", "Tercera empresa"));
 	}
 	
-	public void inserta(Empresa libro) {
-		empresas.add(libro);
+	public void inserta(Empresa empresa) {
+		empresas.add(empresa);
 	}
 	
 	public void borrar(int id) {

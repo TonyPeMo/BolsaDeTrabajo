@@ -51,8 +51,8 @@ public class Controlador {
 	@GetMapping("/borrado/{id}")
 	public String borrar(@PathVariable int id, Model model) {
 		bd.borrar(id);
-		ArrayList<Empresa> Empresas = bd.getEmpresas();
-		model.addAttribute("Empresas", Empresas);
+		ArrayList<Empresa> empresas = bd.getEmpresas();
+		model.addAttribute("Empresas", empresas);
 		model.addAttribute("usuario", this.usuari);
 		model.addAttribute("boton", "Inserta Empresa");
 		model.addAttribute("action", "/insertar");
@@ -61,10 +61,10 @@ public class Controlador {
 	
 	@GetMapping("/modificar/{id}")
 	public String modiciar(@PathVariable int id, Model model) {
-		Empresa empresas = bd.getEmpresa(id);
-		ArrayList<Empresa> Empresas = bd.getEmpresas();
-		model.addAttribute("Empresas", Empresas);
-		model.addAttribute("Empresa", Empresa);
+		Empresa empresa = bd.getEmpresa(id);
+		ArrayList<Empresa> empresas = bd.getEmpresas();
+		model.addAttribute("Empresas", empresas);
+		model.addAttribute("Empresa", empresa);
 		model.addAttribute("usuario", this.usuari);
 		model.addAttribute("boton", "Actualiza Empresa");
 		model.addAttribute("action", "/modificar");
@@ -72,8 +72,8 @@ public class Controlador {
 	}
 	
 	@PostMapping("/insertar")
-	public String modifcar(Empresa empresas, Model model) {
-		bd.inserta(Empresa);
+	public String modifcar(Empresa empresa, Model model) {
+		bd.inserta(empresa);
 		ArrayList<Empresa> empresas = bd.getEmpresas();
 		model.addAttribute("Empresas", empresas);
 		model.addAttribute("Empresa", null);
