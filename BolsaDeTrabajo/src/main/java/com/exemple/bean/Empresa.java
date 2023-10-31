@@ -1,6 +1,7 @@
 package com.exemple.bean;
 
 public class Empresa {
+	
 	private int id;
 	private String nombre;
 	private String info;
