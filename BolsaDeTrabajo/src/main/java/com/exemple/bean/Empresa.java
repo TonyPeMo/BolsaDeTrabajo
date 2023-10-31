@@ -19,14 +19,32 @@ public class Empresa {
 		this.info = info;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+	
 	public Empresa(String nombre, String info) {
 		super();
 		this.nombre = nombre;
 		this.info = info;
 	}
 	
+	
 	public Empresa(String nombre) {
 		super();
 		this.nombre = nombre;
 	}
+	public Empresa(int id, String nombre, String info) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.info = info;
+	}
+	
+	
 }
