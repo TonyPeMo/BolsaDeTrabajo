@@ -15,8 +15,8 @@ class LoadDatabase {
   CommandLineRunner initDatabase(EmpresaRepository repository) {
 
     return args -> {
-      log.info("Preloading " + repository.save(new Empresa("Giyesl", "klklklklkl")));
-      log.info("Preloading " + repository.save(new Empresa("fransl", "klklklklkl")));
+      log.info("Preloading " + repository.save(new Empresa("deloite", "programacion info etc")));
+      log.info("Preloading " + repository.save(new Empresa("mercadona", "supermercado cositas")));
     };
   }
 }
