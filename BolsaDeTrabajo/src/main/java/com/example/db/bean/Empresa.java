@@ -1,4 +1,4 @@
-package com.example.bean;
+package com.example.db.bean;
 
 import jakarta.persistence.*;
 import java.util.Objects;

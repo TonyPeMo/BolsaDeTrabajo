@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.db.controller;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bean.Empresa;
-import com.example.bean.EmpresaRepository;
-import com.example.bean.EmpresaNotFoundException;
+import com.example.db.bean.Empresa;
+import com.example.db.bean.EmpresaNotFoundException;
+import com.example.db.bean.EmpresaRepository;
 
 @RestController
 class EmpresaController {

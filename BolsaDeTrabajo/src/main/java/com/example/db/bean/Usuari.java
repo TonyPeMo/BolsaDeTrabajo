@@ -1,11 +1,8 @@
-package com.example.bean;
+package com.example.db.bean;
 
 
 import java.util.Objects;
-import jakarta.annotation.Generated;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 class Usuari {
