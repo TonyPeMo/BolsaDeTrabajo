@@ -64,5 +64,5 @@ public class Oferta {
 		this.empresa = empresa;
 	}
 
-    /** GET and SET */
+    
 }
