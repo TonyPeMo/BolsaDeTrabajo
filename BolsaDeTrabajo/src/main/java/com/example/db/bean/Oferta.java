@@ -18,7 +18,7 @@ import jakarta.persistence.TemporalType;
 public class Oferta {
     
 	
-    public Oferta(String estado, String descripcion, Calendar registDate, Empresa empresa) {
+    public Oferta(String estado, String descripcion, Empresa empresa) {
 		super();
 		this.estado = estado;
 		this.descripcion = descripcion;
