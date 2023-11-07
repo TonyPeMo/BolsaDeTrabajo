@@ -17,7 +17,16 @@ import jakarta.persistence.TemporalType;
 @Table(name="Oferta")
 public class Oferta {
     
-    @Id
+	
+    public Oferta(String estado, String descripcion, Calendar registDate, Empresa empresa) {
+		super();
+		this.estado = estado;
+		this.descripcion = descripcion;
+//		this.registDate = registDate;
+		this.empresa = empresa;
+	}
+
+	@Id
     @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,9 +34,12 @@ public class Oferta {
     @Column(name = "ESTADO", length = 20, nullable = false)
     private String estado;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "REGIST_DATE", nullable = false)
-    private Calendar registDate;
+    @Column(name = "DESCRIPCION", length = 500, nullable = false)
+    private String descripcion;
+
+//	@Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "REGIST_DATE", nullable = false)
+//    private Calendar registDate;
     
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Empresa empresa;
@@ -40,21 +52,14 @@ public class Oferta {
 		this.id = id;
 	}
 
-	public String getStatus() {
-		return estado;
-	}
 
-	public void setStatus(String estado) {
-		this.estado = estado;
-	}
-
-	public Calendar getRegistDate() {
-		return registDate;
-	}
-
-	public void setRegistDate(Calendar registDate) {
-		this.registDate = registDate;
-	}
+//	public Calendar getRegistDate() {
+//		return registDate;
+//	}
+//
+//	public void setRegistDate(Calendar registDate) {
+//		this.registDate = registDate;
+//	}
 
 	public Empresa getEmpresa() {
 		return empresa;
@@ -63,6 +68,26 @@ public class Oferta {
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
+	
+    public String getEstado() {
+		return estado;
+	}
 
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	@Override
+	  public String toString() {
+	    return "Oferta{" + "id=" + this.id + ", nombre='" + empresa.getNombre() + '\'' + ", Estado= "+ this.estado+ ", descripcion='" + this.descripcion + '\'' + '}';
+	  }
     
 }
