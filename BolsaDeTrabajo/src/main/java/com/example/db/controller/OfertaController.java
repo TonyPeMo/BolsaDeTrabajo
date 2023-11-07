@@ -55,7 +55,7 @@ class OfertaController {
       .map(oferta -> {
     	oferta.setEstado(newOferta.getDescripcion());
         oferta.setEstado(newOferta.getEstado());
-        oferta.setCalendar(newOferta.getCalendar());
+        //oferta.setCalendar(newOferta.getCalendar());
         return repository.save(oferta);
       })
       .orElseGet(() -> {
