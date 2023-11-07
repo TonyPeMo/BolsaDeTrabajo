@@ -89,5 +89,6 @@ public class Oferta {
 	  public String toString() {
 	    return "Oferta{" + "id=" + this.id + ", nombre='" + empresa.getNombre() + '\'' + ", Estado= "+ this.estado+ ", descripcion='" + this.descripcion + '\'' + '}';
 	  }
+	//
     
 }
