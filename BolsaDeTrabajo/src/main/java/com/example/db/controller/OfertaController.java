@@ -1,6 +1,7 @@
 package com.example.db.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.db.bean.Empresa;
 import com.example.db.bean.EmpresaNotFoundException;
 import com.example.db.bean.OfertaNotFoundException;
@@ -20,24 +20,28 @@ import com.example.db.bean.OfertaRepository;
 @RestController
 class OfertaController {
 
-  private final OfertaRepository repository;
+  private final OfertaRepository ofertaRepository;
+  private final EmpresaRepository empresaRepository;
 
-  OfertaController(OfertaRepository repository) {
-    this.repository = repository;
+
+  OfertaController(OfertaRepository ofertaRepository, EmpresaRepository empresaRepository) {
+    this.ofertaRepository = ofertaRepository;
+    this.empresaRepository = empresaRepository;
   }
+  
 
 
   // Aggregate root
   // tag::get-aggregate-root[]
   @GetMapping("/ofertas")
   List<Oferta> all() {
-    return repository.findAll();
+    return ofertaRepository.findAll();
   }
   // end::get-aggregate-root[]
 
   @PostMapping("/ofertas")
   Oferta newOferta(@RequestBody Oferta newOferta) {
-    return repository.save(newOferta);
+    return ofertaRepository.save(newOferta);
   }
 
   // Single item
@@ -45,28 +49,43 @@ class OfertaController {
   @GetMapping("/ofertas/{id}")
   Oferta one(@PathVariable Long id) {
     
-    return repository.findById(id)
+    return ofertaRepository.findById(id)
       .orElseThrow(() -> new OfertaNotFoundException(id));
   }
 
   @PutMapping("/ofertas/{id}")
   Oferta replaceOferta(@RequestBody Oferta newOferta, @PathVariable Long id) {
     
-    return repository.findById(id)
+    return ofertaRepository.findById(id)
       .map(oferta -> {
     	oferta.setEstado(newOferta.getDescripcion());
         oferta.setEstado(newOferta.getEstado());
         //oferta.setCalendar(newOferta.getCalendar());
-        return repository.save(oferta);
+        return ofertaRepository.save(oferta);
       })
       .orElseGet(() -> {
         newOferta.setId(id);
-        return repository.save(newOferta);
+        return ofertaRepository.save(newOferta);
       });
   }
+  
+//  @GetMapping("/empresaOfertas/{id}")
+//  List<Oferta> getOfertasByEmpresaId(@PathVariable Long id) {
+//      Empresa empresa = empresaRepository.findById(id)
+//          .orElseThrow(() -> new EmpresaNotFoundException(id));
+//      
+//      // Cargar explícitamente las ofertas asociadas a la empresa
+//      List<Oferta> ofertas = empresa.getOfertas();
+//      
+//      return ofertas;
+//  }
+
+
+
 
   @DeleteMapping("/ofertas/{id}")
   void deleteOferta(@PathVariable Long id) {
-    repository.deleteById(id);
-  }
+	  ofertaRepository.deleteById(id);
+  } 
+  
 }

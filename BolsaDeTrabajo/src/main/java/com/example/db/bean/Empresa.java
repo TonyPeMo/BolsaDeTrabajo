@@ -1,6 +1,8 @@
 package com.example.db.bean;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -59,6 +61,17 @@ public class Empresa {
 	    return Objects.equals(this.id, empresa.id) && Objects.equals(this.nombre, empresa.nombre)
 	        && Objects.equals(this.descripcion, empresa.descripcion);
 	  }
+	
+//	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<Oferta> ofertas;
+//
+//	    public List<Oferta> getOfertas() {
+//	        return ofertas;
+//	    }
+//
+//	    public void setOfertas(List<Oferta> ofertas) {
+//	        this.ofertas = ofertas;
+//	    }
 	
 	 @Override
 	  public int hashCode() {
