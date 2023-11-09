@@ -40,14 +40,14 @@ class EmpresaController {
   // Single item
   
   @GetMapping("/empresas/{id}")
-  Empresa one(@PathVariable Long id) {
+  Empresa one(@PathVariable long id) {
     
     return repository.findById(id)
       .orElseThrow(() -> new EmpresaNotFoundException(id));
   }
 
   @PutMapping("/empresas/{id}")
-  Empresa replaceEmpresa(@RequestBody Empresa newEmpresa, @PathVariable Long id) {
+  Empresa replaceEmpresa(@RequestBody Empresa newEmpresa, @PathVariable long id) {
     
     return repository.findById(id)
       .map(empresa -> {
@@ -62,7 +62,7 @@ class EmpresaController {
   }
 
   @DeleteMapping("/empresas/{id}")
-  void deleteEmpresa(@PathVariable Long id) {
+  void deleteEmpresa(@PathVariable long id) {
     repository.deleteById(id);
   }
 }
