@@ -1,6 +1,9 @@
 package com.example.db.controller;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Optional.*;
+
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +35,12 @@ class OfertaController {
   @GetMapping("/ofertas")
   List<Oferta> all() {
     return repository.findAll();
+  }
+  
+  
+  @GetMapping("/empresa/{id}/ofertas")
+  List<Oferta> findOfertasByEmpresaId(@PathVariable Long id) {
+    return repository.findAllOfertasByEmpresaId(id);
   }
   // end::get-aggregate-root[]
 

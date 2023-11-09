@@ -10,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -34,7 +36,7 @@ public class Oferta {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "TITULO", length = 500, nullable = false)
     private String titulo;
@@ -50,7 +52,7 @@ public class Oferta {
     private Long idEmpresa;
     
 
-    public long getId() {
+    public Long getId() {
 		return id;
 	}
 
@@ -88,7 +90,7 @@ public class Oferta {
 		return idEmpresa;
 	}
 
-	public void setIdEmpresa(Long idEmpresa) {
+	public void setIdEmpresa(long idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
 
