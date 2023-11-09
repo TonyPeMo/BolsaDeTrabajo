@@ -35,7 +35,18 @@ class OfertaController {
   // tag::get-aggregate-root[]
   @GetMapping("/ofertas")
   List<Oferta> all() {
+<<<<<<< HEAD
     return ofertaRepository.findAll();
+=======
+    return repository.findAll();
+  }
+  
+  
+  
+  @GetMapping("/empresa/{id}/ofertas")
+  List<Oferta> findOfertasByEmpresaId(@PathVariable long id) {
+    return repository.findAllByIdEmpresa(id);
+>>>>>>> main
   }
   // end::get-aggregate-root[]
 
@@ -47,14 +58,14 @@ class OfertaController {
   // Single item
   
   @GetMapping("/ofertas/{id}")
-  Oferta one(@PathVariable Long id) {
+  Oferta one(@PathVariable long id) {
     
     return ofertaRepository.findById(id)
       .orElseThrow(() -> new OfertaNotFoundException(id));
   }
 
   @PutMapping("/ofertas/{id}")
-  Oferta replaceOferta(@RequestBody Oferta newOferta, @PathVariable Long id) {
+  Oferta replaceOferta(@RequestBody Oferta newOferta, @PathVariable long id) {
     
     return ofertaRepository.findById(id)
       .map(oferta -> {
@@ -71,8 +82,14 @@ class OfertaController {
  
   
   @DeleteMapping("/ofertas/{id}")
+<<<<<<< HEAD
   void deleteOferta(@PathVariable Long id) {
 	  ofertaRepository.deleteById(id);
   } 
   
+=======
+  void deleteOferta(@PathVariable long id) {
+    repository.deleteById(id);
+  }
+>>>>>>> main
 }

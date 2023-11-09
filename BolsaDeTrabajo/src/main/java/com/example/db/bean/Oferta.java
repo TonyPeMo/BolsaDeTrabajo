@@ -26,7 +26,7 @@ public class Oferta {
 	Oferta() {
     }
 
-    Oferta(String titulo, String estado, String descripcion, Long idEmpresa) {
+    Oferta(String titulo, String estado, String descripcion, long idEmpresa) {
 		this.titulo = titulo;
         this.estado = estado;
         this.descripcion = descripcion;
@@ -36,7 +36,7 @@ public class Oferta {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "TITULO", length = 500, nullable = false)
     private String titulo;
@@ -49,10 +49,10 @@ public class Oferta {
 
 //    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Column(name = "ID_EMPRESA")
-    private Long idEmpresa;
+    private long idEmpresa;
     
 
-    public Long getId() {
+    public long getId() {
 		return id;
 	}
 
@@ -86,7 +86,7 @@ public class Oferta {
 
 
 
-	public Long getIdEmpresa() {
+	public long getIdEmpresa() {
 		return idEmpresa;
 	}
 
