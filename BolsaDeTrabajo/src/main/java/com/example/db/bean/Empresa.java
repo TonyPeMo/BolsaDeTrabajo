@@ -29,8 +29,6 @@ public class Empresa {
         this.descripcion = descripcion;
     }
     
-	
-
 	public Long getId() {
 		return id;
 	}

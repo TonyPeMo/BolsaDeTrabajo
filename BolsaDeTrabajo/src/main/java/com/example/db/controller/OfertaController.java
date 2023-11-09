@@ -68,17 +68,6 @@ class OfertaController {
         return ofertaRepository.save(newOferta);
       });
   }
-  
-  @GetMapping("/ofertas/empresas/{id}")
-  List<Oferta> getOfertasByEmpresaId(@PathVariable Long id) {
-      Optional<Empresa> empresa = empresaRepository.findById(id);
-      if (!empresa.isPresent()) {
-          throw new EmpresaNotFoundException(id);
-      }
-      return ofertaRepository.findByEmpresa(empresa.get());
-  }
-
-
  
   
   @DeleteMapping("/ofertas/{id}")
