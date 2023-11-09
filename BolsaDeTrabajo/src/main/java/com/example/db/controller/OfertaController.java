@@ -69,20 +69,18 @@ class OfertaController {
       });
   }
   
-//  @GetMapping("/empresaOfertas/{id}")
-//  List<Oferta> getOfertasByEmpresaId(@PathVariable Long id) {
-//      Empresa empresa = empresaRepository.findById(id)
-//          .orElseThrow(() -> new EmpresaNotFoundException(id));
-//      
-//      // Cargar explícitamente las ofertas asociadas a la empresa
-//      List<Oferta> ofertas = empresa.getOfertas();
-//      
-//      return ofertas;
-//  }
+  @GetMapping("/ofertas/empresas/{id}")
+  List<Oferta> getOfertasByEmpresaId(@PathVariable Long id) {
+      Optional<Empresa> empresa = empresaRepository.findById(id);
+      if (!empresa.isPresent()) {
+          throw new EmpresaNotFoundException(id);
+      }
+      return ofertaRepository.findByEmpresa(empresa.get());
+  }
 
 
-
-
+ 
+  
   @DeleteMapping("/ofertas/{id}")
   void deleteOferta(@PathVariable Long id) {
 	  ofertaRepository.deleteById(id);

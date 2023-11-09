@@ -62,17 +62,7 @@ public class Empresa {
 	        && Objects.equals(this.descripcion, empresa.descripcion);
 	  }
 	
-//	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<Oferta> ofertas;
-//
-//	    public List<Oferta> getOfertas() {
-//	        return ofertas;
-//	    }
-//
-//	    public void setOfertas(List<Oferta> ofertas) {
-//	        this.ofertas = ofertas;
-//	    }
-	
+
 	 @Override
 	  public int hashCode() {
 	    return Objects.hash(this.id, this.nombre, this.descripcion);

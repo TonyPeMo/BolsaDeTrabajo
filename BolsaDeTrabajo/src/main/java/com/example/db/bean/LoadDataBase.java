@@ -22,6 +22,7 @@ class LoadDatabase {
         if (mercadona != null) {
             log.info("Empresa 'mercadona' encontrada: " + mercadona.getNombre());
             log.info("Preloading " + ofertaRepository.save(new Oferta("Título de la oferta", "Activa", "Descripción de la oferta", new Empresa("Puterio", "supermercado cositas"))));
+            log.info("Preloading " + ofertaRepository.save(new Oferta("Título de la oferta", "Activa", "Descripción de la oferta", new Empresa("Puterio", "Tienda de zapatos"))));
             //log.info("Preloading " + ofertaRepository.save(new Oferta("Título de la oferta", "Activa", "Descripción de la oferta",mercadona)));
 
         } else {
