@@ -37,7 +37,12 @@ class OfertaController {
     return repository.findAll();
   }
   
-
+  
+  
+  @GetMapping("/empresa/{id}/ofertas")
+  List<Oferta> findOfertasByEmpresaId(@PathVariable long id) {
+    return repository.findAllByIdEmpresa(id);
+  }
   // end::get-aggregate-root[]
 
   @PostMapping("/ofertas")

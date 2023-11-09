@@ -25,7 +25,10 @@ public class LoadDataBase {
 //                 Usa la instancia de Empresa obtenida de empresaRepository para crear la oferta
                 log.info("Preloading " + ofertaRepository.save(new Oferta("Título de la oferta", "Activa", "Descripción de la oferta", mercadona.getId())));
                 log.info("Preloading " + ofertaRepository.save(new Oferta("Título de la oferta", "Activa", "Descripción de la oferta", (long) 1)));
-            } else {
+                log.info("Preloading " + ofertaRepository.save(new Oferta("oferta2", "Activa", "Descripción de la oferta", (long) 1)));
+                log.info("Preloading " + ofertaRepository.save(new Oferta("oferta3", "Activa", "Descripción de la oferta", (long) 1)));
+                log.info("Preloading " + ofertaRepository.save(new Oferta("oferta4", "Activa", "Descripción de la oferta", (long) 1)));
+} else {
                 log.error("Empresa 'mercadona' no encontrada.");
             }
         };
