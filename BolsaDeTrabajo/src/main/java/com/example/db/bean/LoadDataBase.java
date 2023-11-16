@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 public class LoadDataBase {
 
@@ -15,23 +16,30 @@ public class LoadDataBase {
     CommandLineRunner initDatabase(EmpresaRepository empresaRepository, OfertaRepository ofertaRepository) {
 
         return args -> {
-            log.info("Preloading " + empresaRepository.save(new Empresa("deloite", "programacion info etc")));
-            log.info("Preloading " + empresaRepository.save(new Empresa("mercadona", "supermercado cositas")));
+            // Guardar las empresas
+            Empresa empresa1 = empresaRepository.save(new Empresa("deloite", "programacion info etc"));
+            Empresa empresa2 = empresaRepository.save(new Empresa("mercadona", "supermercado cositas"));
 
-            Empresa mercadona = empresaRepository.findByNombre("mercadona");
-            if (mercadona != null) {
-                log.info("Empresa 'mercadona' encontrada: " + mercadona.getNombre());
-                
-//                 Usa la instancia de Empresa obtenida de empresaRepository para crear la oferta
-                log.info("Preloading " + ofertaRepository.save(new Oferta("Título de la oferta", "Activa", "Descripción de la oferta", mercadona.getId())));
-                log.info("Preloading " + ofertaRepository.save(new Oferta("Título de la oferta", "Activa", "Descripción de la oferta", (long) 1)));
-                log.info("Preloading " + ofertaRepository.save(new Oferta("oferta2", "Activa", "Descripción de la oferta", (long) 1)));
-                log.info("Preloading " + ofertaRepository.save(new Oferta("oferta3", "Activa", "Descripción de la oferta", (long) 1)));
-                log.info("Preloading " + ofertaRepository.save(new Oferta("oferta4", "Activa", "Descripción de la oferta", (long) 1)));
-} else {
-                log.error("Empresa 'mercadona' no encontrada.");
-            }
+            log.info("Preloading " + empresa1);
+            log.info("Preloading " + empresa2);
+
+            // Recuperar las empresas guardadas
+            Empresa empresaDeloite = empresaRepository.findByNombre("deloite");
+            Empresa empresaMercadona = empresaRepository.findByNombre("mercadona");
+
+           if (empresaDeloite != null && empresaMercadona != null) {
+//                log.info("Empresa 'deloite' encontrada: " + empresaDeloite.getNombre());
+//                log.info("Empresa 'mercadona' encontrada: " + empresaMercadona.getNombre());
+//
+//                // Crear y guardar ofertas utilizando las empresas recuperadas
+//                Oferta oferta1 = new Oferta("Título de la oferta 1", "Activa", "Descripción de la oferta 1", empresaDeloite);
+//                log.info("Preloading " + ofertaRepository.save(oferta1));
+//
+//                Oferta oferta2 = new Oferta("Título de la oferta 2", "Activa", "Descripción de la oferta 2", empresaDeloite);
+//                log.info("Preloading " + ofertaRepository.save(oferta2));
+           } else {
+//                log.error("Empresas no encontradas.");
+           }
         };
     }
 }
-

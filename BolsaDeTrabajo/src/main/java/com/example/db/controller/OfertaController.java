@@ -41,7 +41,7 @@ class OfertaController {
   
   @GetMapping("/empresa/{id}/ofertas")
   List<Oferta> findOfertasByEmpresaId(@PathVariable long id) {
-    return repository.findAllByIdEmpresa(id);
+      return repository.findAllByEmpresaId(id);
   }
   // end::get-aggregate-root[]
 
@@ -61,19 +61,20 @@ class OfertaController {
 
   @PutMapping("/ofertas/{id}")
   Oferta replaceOferta(@RequestBody Oferta newOferta, @PathVariable long id) {
-    
-    return repository.findById(id)
-      .map(oferta -> {
-    	oferta.setEstado(newOferta.getDescripcion());
-        oferta.setEstado(newOferta.getEstado());
-        //oferta.setCalendar(newOferta.getCalendar());
-        return repository.save(oferta);
-      })
-      .orElseGet(() -> {
-        newOferta.setId(id);
-        return repository.save(newOferta);
-      });
+      
+      return repository.findById(id)
+        .map(oferta -> {
+          oferta.setDescripcion(newOferta.getDescripcion()); // Corregir este método a setDescripcion
+          oferta.setEstado(newOferta.getEstado());
+          //oferta.setCalendar(newOferta.getCalendar());
+          return repository.save(oferta);
+        })
+        .orElseGet(() -> {
+          newOferta.setId(id);
+          return repository.save(newOferta);
+        });
   }
+
 
   @DeleteMapping("/ofertas/{id}")
   void deleteOferta(@PathVariable long id) {
