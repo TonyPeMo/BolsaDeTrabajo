@@ -29,32 +29,25 @@ class OfertaController {
     this.repository = repository;
   }
 
-
-  // Aggregate root
-  // tag::get-aggregate-root[]
   @GetMapping("/ofertas")
   List<Oferta> all() {
     return repository.findAll();
   }
   
   
-  
   @GetMapping("/empresa/{id}/ofertas")
   List<Oferta> findOfertasByEmpresaId(@PathVariable long id) {
       return repository.findAllByEmpresaId(id);
   }
-  // end::get-aggregate-root[]
 
   @PostMapping("/ofertas")
   Oferta newOferta(@RequestBody Oferta newOferta) {
     return repository.save(newOferta);
   }
 
-  // Single item
   
   @GetMapping("/ofertas/{id}")
   Oferta one(@PathVariable long id) {
-    
     return repository.findById(id)
       .orElseThrow(() -> new OfertaNotFoundException(id));
   }
@@ -64,9 +57,8 @@ class OfertaController {
       
       return repository.findById(id)
         .map(oferta -> {
-          oferta.setDescripcion(newOferta.getDescripcion()); // Corregir este método a setDescripcion
+          oferta.setDescripcion(newOferta.getDescripcion());
           oferta.setEstado(newOferta.getEstado());
-          //oferta.setCalendar(newOferta.getCalendar());
           return repository.save(oferta);
         })
         .orElseGet(() -> {

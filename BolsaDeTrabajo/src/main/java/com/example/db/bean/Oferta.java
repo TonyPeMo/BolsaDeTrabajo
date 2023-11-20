@@ -33,7 +33,7 @@ public class Oferta {
     private String descripcion;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "empresa_id", nullable = false)
+    @JoinColumn(name = "empresa", nullable = false)
     private Empresa empresa;
 
     public long getId() {

@@ -23,22 +23,16 @@ class EmpresaController {
     this.repository = repository;
   }
 
-
-  // Aggregate root
-  // tag::get-aggregate-root[]
   @GetMapping("/empresas")
   List<Empresa> all() {
     return repository.findAll();
   }
-  // end::get-aggregate-root[]
-
+  
   @PostMapping("/empresas")
   Empresa newEmpresa(@RequestBody Empresa newEmpresa) {
     return repository.save(newEmpresa);
   }
 
-  // Single item
-  
   @GetMapping("/empresas/{id}")
   Empresa one(@PathVariable long id) {
     

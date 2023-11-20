@@ -21,8 +21,8 @@ public class Empresa {
     @Column(name = "DESCRIPCION", nullable = false, length = 500)
     private String descripcion;
 
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Oferta> ofertas;
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<Oferta> ofertas = new ArrayList<>();
 
     Empresa() {}
 
