@@ -18,19 +18,15 @@ public class LoadDataBase {
             log.info("Preloading " + empresaRepository.save(new Empresa("deloite", "programacion info etc")));
             log.info("Preloading " + empresaRepository.save(new Empresa("mercadona", "supermercado cositas")));
 
-            Empresa mercadona = empresaRepository.findByNombre("mercadona");
-            if (mercadona != null) {
-                log.info("Empresa 'mercadona' encontrada: " + mercadona.getNombre());
-                
-//                 Usa la instancia de Empresa obtenida de empresaRepository para crear la oferta
-                log.info("Preloading " + ofertaRepository.save(new Oferta("Título de la oferta", "Activa", "Descripción de la oferta", mercadona.getId())));
-                log.info("Preloading " + ofertaRepository.save(new Oferta("Título de la oferta", "Activa", "Descripción de la oferta", (long) 1)));
-                log.info("Preloading " + ofertaRepository.save(new Oferta("oferta2", "Activa", "Descripción de la oferta", (long) 1)));
-                log.info("Preloading " + ofertaRepository.save(new Oferta("oferta3", "Activa", "Descripción de la oferta", (long) 1)));
-                log.info("Preloading " + ofertaRepository.save(new Oferta("oferta4", "Activa", "Descripción de la oferta", (long) 1)));
-} else {
-                log.error("Empresa 'mercadona' no encontrada.");
-            }
+            Long idEmpresa = 1L; // ID de la empresa conocido
+
+            Empresa empresa = empresaRepository.findById(idEmpresa)
+                    .orElseThrow(() -> new EmpresaNotFoundException(idEmpresa));
+
+            // Crear una oferta asociada a la empresa obtenida
+            Oferta oferta = new Oferta("Título de la oferta", "Activa", "Descripción de la oferta", empresa);
+            ofertaRepository.save(oferta);
+
         };
     }
 }

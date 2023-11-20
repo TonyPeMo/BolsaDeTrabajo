@@ -19,6 +19,8 @@ public class Empresa {
     @Column(name = "DESCRIPCION", nullable = false, length = 500)    
     private String descripcion;
     
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Oferta> ofertas;
     
     
     Empresa() {}
