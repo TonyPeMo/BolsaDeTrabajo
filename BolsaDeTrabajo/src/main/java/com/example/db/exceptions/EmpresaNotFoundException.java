@@ -1,4 +1,4 @@
-package com.example.db.bean;
+package com.example.db.exceptions;
 
 public class EmpresaNotFoundException extends RuntimeException {
 

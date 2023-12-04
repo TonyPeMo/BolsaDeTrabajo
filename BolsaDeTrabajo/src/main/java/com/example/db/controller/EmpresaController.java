@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.db.bean.Empresa;
-import com.example.db.bean.EmpresaNotFoundException;
 import com.example.db.bean.EmpresaRepository;
+import com.example.db.exceptions.EmpresaNotFoundException;
 
 @RestController
 class EmpresaController {
