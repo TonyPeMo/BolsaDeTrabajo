@@ -23,54 +23,56 @@ import com.example.db.exceptions.OfertaNotFoundException;
 @RestController
 class OfertaController {
 
-  private final OfertaRepository repository;
+  private final OfertaRepository ofertaRepository;
+  private final EmpresaRepository empresaRepository;
 
-  OfertaController(OfertaRepository repository) {
-    this.repository = repository;
+  OfertaController(OfertaRepository ofertaRepository, EmpresaRepository empresaRepository) {
+    this.ofertaRepository = ofertaRepository;
+	this.empresaRepository = empresaRepository;
   }
 
   @GetMapping("/ofertas")
   List<Oferta> all() {
-    return repository.findAll();
+    return ofertaRepository.findAll();
   }
   
   
   @GetMapping("/empresa/{id}/ofertas")
   List<Oferta> findOfertasByEmpresaId(@PathVariable long id) {
-      return repository.findAllByEmpresaId(id);
+      return ofertaRepository.findAllByEmpresaId(id);
   }
 
   @PostMapping("/ofertas")
   Oferta newOferta(@RequestBody Oferta newOferta) {
-    return repository.save(newOferta);
+    return ofertaRepository.save(newOferta);
   }
 
   
   @GetMapping("/ofertas/{id}")
   Oferta one(@PathVariable long id) {
-    return repository.findById(id)
+    return ofertaRepository.findById(id)
       .orElseThrow(() -> new OfertaNotFoundException(id));
   }
 
   @PutMapping("/ofertas/{id}")
   Oferta replaceOferta(@RequestBody Oferta newOferta, @PathVariable long id) {
       
-      return repository.findById(id)
+      return ofertaRepository.findById(id)
         .map(oferta -> {
           oferta.setDescripcion(newOferta.getDescripcion());
           oferta.setEstado(newOferta.getEstado());
-          return repository.save(oferta);
+          return ofertaRepository.save(oferta);
         })
         .orElseGet(() -> {
           newOferta.setId(id);
-          return repository.save(newOferta);
+          return ofertaRepository.save(newOferta);
         });
   }
 
 
   @DeleteMapping("/ofertas/{id}")
   void deleteOferta(@PathVariable long id) {
-    repository.deleteById(id);
+	  ofertaRepository.deleteById(id);
   }
   
 }

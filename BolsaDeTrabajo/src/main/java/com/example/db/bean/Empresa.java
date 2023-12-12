@@ -23,13 +23,23 @@ public class Empresa {
 
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private List<Oferta> ofertas = new ArrayList<>();
+    
 
-    Empresa() {}
+    public void añadirOferta(Oferta oferta) {
+        ofertas.add(oferta);
+        oferta.setEmpresa(this);
+    }
 
-    Empresa(String nombre, String descripcion) {
-        this.nombre = nombre;
+    public void removeOferta(Oferta oferta) {
+        ofertas.remove(oferta);
+        oferta.setEmpresa(null);
+    }
+    
+    public Empresa(String nombre, String descripcion) {
+    	super();
+    	this.nombre = nombre;
         this.descripcion = descripcion;
-        this.ofertas = new ArrayList<>();
+       // this.ofertas = new ArrayList<>();
     }
 
     public long getId() {
@@ -64,21 +74,21 @@ public class Empresa {
         this.ofertas = ofertas;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Empresa))
-            return false;
-        Empresa empresa = (Empresa) o;
-        return Objects.equals(this.id, empresa.id) && Objects.equals(this.nombre, empresa.nombre)
-                && Objects.equals(this.descripcion, empresa.descripcion);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.id, this.nombre, this.descripcion);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o)
+//            return true;
+//        if (!(o instanceof Empresa))
+//            return false;
+//        Empresa empresa = (Empresa) o;
+//        return Objects.equals(this.id, empresa.id) && Objects.equals(this.nombre, empresa.nombre)
+//                && Objects.equals(this.descripcion, empresa.descripcion);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(this.id, this.nombre, this.descripcion);
+//    }
 
     @Override
     public String toString() {
