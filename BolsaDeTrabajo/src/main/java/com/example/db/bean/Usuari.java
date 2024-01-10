@@ -2,12 +2,18 @@ package com.example.db.bean;
 
 
 import java.util.Objects;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 @Entity
 class Usuari {
+	@Schema(example = "4", description = "Identificador clave primaria empleado númerico")
 	private @Id @GeneratedValue Long id;
+	
+	@Schema(example = "Tony Pereira", description = "Nombre completo usuario")
 	private String nom;
+	
 	
 	  Usuari() {}
 	
