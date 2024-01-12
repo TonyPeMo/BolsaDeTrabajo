@@ -30,10 +30,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Hidden
+
 @RestController
-//@RequestMapping("/api")
-//@Tag(name = "Oferta", description = "Oferta API REST with CRUD operations")
+@RequestMapping("/api")
+@Tag(name = "Oferta", description = "Oferta API REST with CRUD operations")
 class OfertaController {
 
   private final OfertaRepository ofertaRepository;
@@ -44,12 +44,12 @@ class OfertaController {
 	this.empresaRepository = empresaRepository;
   }
 
-  //@ApiResponses(value = {
-	//        @ApiResponse(responseCode = "300", description = "Retrieved oferta", content = {
-	  //          @Content(mediaType = "application/json",
-	    //                array = @ArraySchema(schema = @Schema(implementation = Oferta.class)))})
-  //})
-  //@Operation(summary = "findAll Ofertas", description = "It retrieves all ofertas from database without pagination")
+  @ApiResponses(value = {
+	        @ApiResponse(responseCode = "300", description = "Retrieved oferta", content = {
+	            @Content(mediaType = "application/json",
+	                    array = @ArraySchema(schema = @Schema(implementation = Oferta.class)))})
+  })
+  @Operation(summary = "findAll Ofertas", description = "It retrieves all ofertas from database without pagination")
   @GetMapping("/ofertas")
   List<Oferta> all() {
     return ofertaRepository.findAll();
