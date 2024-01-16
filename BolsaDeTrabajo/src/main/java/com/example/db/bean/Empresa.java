@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name="Empresa")
 public class Empresa {
@@ -13,12 +15,15 @@ public class Empresa {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Schema(example = "4", description = "Identificador clave primaria empleado númerico")
     private long id;
 
     @Column(name = "NOMBRE", nullable = false, length = 100)
+	@Schema(example = "Grifols", description = "Nombre completo de la empresa")
     private String nombre;
 
     @Column(name = "DESCRIPCION", nullable = false, length = 500)
+	@Schema(example = "Grifols es una compañía global líder en el sector de la salud que desarrolla medicamentos derivados del plasma y otras soluciones biotecnológicas innovadoras que mejoran la salud y la vida de millones de pacientes en todo el mundo. ", description = "Descripcion de la empresa")
     private String descripcion;
 
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)

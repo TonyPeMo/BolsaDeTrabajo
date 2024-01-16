@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "Oferta")
 public class Oferta {
@@ -11,15 +13,24 @@ public class Oferta {
 	@Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Schema(example = "4", description = "Identificador clave primaria empleado númerico")
     private long id;
 
     @Column(name = "TITULO", length = 500, nullable = false)
+	@Schema(example = "Desarrollador/a Junior (formación Java online + empleo) - Barcelona", description = "Nombre completo de la oferta")
     private String titulo;
 
     @Column(name = "ESTADO", length = 20, nullable = false)
+    @Schema(example = "En proceso", description = "Estado actual de la oferta")
     private String estado;
 
     @Column(name = "DESCRIPCION", length = 500, nullable = false)
+    @Schema(name = "¿Buscas tu primera experiencia en el sector IT? ¿Cuentas con experiencia/conocimientos en backend? Si respondiste si, ¡Sigue leyendo!\r\n"
+    		+ "\r\n"
+    		+ "Desde Luca TIC vamos a lanzar a partir de febrero un proyecto de inclusión para uno de nuestros principales clientes, líder del sector Tecnológico.\r\n"
+    		+ "\r\n"
+    		+ "Buscamos personas con gran interés en poder iniciar su carrera profesional en el mundo de la programación."
+    		, description = "Descripcion de la oferta")
     private String descripcion;
 
     @ManyToOne(fetch = FetchType.EAGER)
