@@ -1,5 +1,7 @@
 package com.example.db.Security;
 
+import com.example.db.model.UserEntity;
+import com.example.db.model.UserAuthority;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
@@ -9,8 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
-import com.example.db.model.UserEntity;
 
 import java.util.Date;
 
@@ -49,7 +49,7 @@ public class JwtTokenProvider {
             return false;
 
         try {
-            JwtParser validator = ((Object) Jwts.builder())
+            JwtParser validator = Jwts.parserBuilder()
                     .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
                     .build();
 
@@ -67,7 +67,7 @@ public class JwtTokenProvider {
     }
 
     public String getUsernameFromToken(String token) {
-        JwtParser parser = ((Object) Jwts.builder())
+        JwtParser parser = Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
                 .build();
 
